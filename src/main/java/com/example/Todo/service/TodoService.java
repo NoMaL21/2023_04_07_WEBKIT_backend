@@ -42,6 +42,17 @@ public class TodoService {
 		return repository.findById(entity.getId());
 	}
 	
+	public String delete(final String id) {
+		if(repository.existsById(id)) {
+			repository.deleteById(id);
+		}
+		else {
+			throw new RuntimeException("id does not exist");
+		}
+		
+		return "Deleted";
+	}
+	
 	public Optional<TodoEntity>updateTodo(final TodoEntity entity){
 		validate(entity);
 		
